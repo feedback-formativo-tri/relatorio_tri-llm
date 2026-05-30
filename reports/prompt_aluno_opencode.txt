@@ -1,0 +1,142 @@
+Você é um especialista em psicometria e análise educacional. Analise os dados TRI de 3 parâmetros lidos e forneça feedback formativo detalhado que siga o modelo fornecido estritamente.
+
+⚠️ REGRAS OBRIGATÓRIAS ⚠️
+1. Nos locais com (PARÊNTESES), você pode escrever explicações ou análises livres no escopo do solicitado, mas mantendo o parêntese removido no resultado final.
+2. Nos locais com {CHAVES}, apenas substitua o valor com o dado correspondente do csv lido.
+3. Não altere a ordem dos campos.
+4. No HTML, preserve rigorosamente a estrutura fornecida.
+
+
+
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <title>Relatório de Análise TRI pós-prova do ENEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg0:#fbf7ef;
+      --bg1:#f4efe5;
+      --card:#ffffff;
+      --ink:#1f2328;
+      --muted:#5f5a52;
+      --line:#e6dfd3;
+      --accent:#1f5e4b;
+      --accent2:#b24b2a;
+      --shadow:0 10px 30px rgba(25,20,10,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:'Source Serif 4', Georgia, serif;
+      color:var(--ink);
+      background: radial-gradient(1200px 420px at 15% -10%, rgba(31,94,75,.18), transparent 55%),
+                  radial-gradient(900px 360px at 85% 0%, rgba(178,75,42,.16), transparent 55%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      padding:20px 14px 34px;
+    }
+    h1,h2{font-family:'IBM Plex Sans', ui-sans-serif, system-ui; letter-spacing:-0.01em;}
+    h1{font-size:28px; margin:0 0 10px;}
+    h2{font-size:18px; margin:18px 0 8px;}
+    a{color:var(--accent); text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .top{
+      max-width:1500px;
+      margin:0 auto 14px;
+      background:rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 10px;
+    }
+    .muted{color:var(--muted);}
+    .container{
+      max-width:1500px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    @media(min-width: 980px){
+      .container{grid-template-columns: 1fr 1.25fr; align-items:start;}
+    }
+    .card{
+      background:rgba(255,255,255,.82);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px;
+    }
+    ul{margin:8px 0 0 18px;}
+    li{margin:6px 0;}
+    iframe{
+      width:100%;
+      height:820px;
+      border:1px solid rgba(230,223,211,.9);
+      border-radius:14px;
+      background:#fff;
+    }
+  </style>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script><style id="plotly.js-style-global"></style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1297.0" data-gr-ext-installed="">
+  <div class="top">
+    <h1>Relatório de Análise TRI pós-prova do ENEM</h1>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <h2><b>Estudante: {MATRICULA}</b></h2>
+      <ul>
+        <li>Habilidade do examinando (ENEM): {HABILIDADE_ESTIMADA_NORMALIZADA} (200 a 1.000) | theta: {HABILIDADE_ESTIMADA}</li>
+        <li>Probabilidade do modelo no item: P(theta)={PROBABILIDADE_ACERTO}%</li>
+        <li>O aluno {"acertou" if ACERTOU == True else "errou"} a questão</li>
+      </ul>
+
+      <h2><b>Item avaliado: {ITEM} (Q{ITEM_PROVA})</b></h2>
+      <ul>
+        <li>Área de Conhecimento: {AREA}</li>
+        <li>Gabarito: {GABARITO}</li>
+        <li>Parâmetros TRI (3PL): a={DISCRIMINACAO} | b={DIFICULDADE} (b_ENEM={DIFICULDADE_NORMALIZADA}) | c={PROBABILIDADE_ACERTO_ACASO}%</li>
+        <li>Classificação do item: {CLASSIFICACAO_DIFICULDADE_ITEM}</li>
+        <li>Competência exigida: {COMPETENCIA_EXIGIDA_ITEM}</li>
+        <li>Habilidade exigida: {HABILIDADE_EXIGIDA_ITEM}</li>
+      </ul>
+
+      <h2>Análise Detalhada e Feedback</h2>
+      <ul>
+        <li>(Calcule o gap, que é a diferença entre a {HABILIDADE_ESTIMADA_NORMALIZADA} e {DIFICULDADE_NORMALIZADA}, e apresente o dado.)</li>
+        <li>(Analise o gap, inferindo pelo seu tamanho quanto de esforço o aluno deverá colocar para fechar esse gap, se este for o caso.)</li>
+        <li>(Analise a relação entre {PROBABILIDADE_ACERTO} e {PROBABILIDADE_ACERTO_ACASO} e indique, em face a essa comparação, se é mais provável que o aluno tenha acertado por chute ou por conhecimento.)</li>
+        <li>(Conclua a análise desta seção sintetizando os dados apresentados.)</li>
+      </ul>
+      <p>(Forneça um feedback ao aluno quanto ao seu desempenho na questão, sua habilidade estimada, sua probabilidade de acerto e a dificuldade da questão. Leve em consideração neste feedback os dados levantados nesta seção. Reforce a necessidade de aprofundar os estudos, se necessário.)</p>
+      <h2>Competências e Habilidades</h2>
+      <ul>
+        <li>Competência exigida: {COMPETENCIA_EXIGIDA_ITEM}</li>
+        <li>Habilidade exigida: {HABILIDADE_EXIGIDA_ITEM}</li>
+        <li>Assuntos englobados: (Com base na COMPETENCIA_EXIGIDA_ITEM e na HABILIDADE_EXIGIDA_ITEM, indique quais os possíveis assuntos abordados pela questão.)</li>
+      </ul>
+      <h2>Estratégias de Estudo Direcionadas</h2>
+      <ul>
+        <li>Tópicos prioritários: (Usando a COMPETENCIA_EXIGIDA_ITEM e a HABILIDADE_EXIGIDA_ITEM, infira os tópicos mais importantes para estudo.)</li>
+        <li>Estratégias: (Usando a análise do gap calculado, indique uma estratégia de estudo com intensidade proporcional ao tamanho do gap.)</li>
+        <li><a href="https://app.mecenem.mec.gov.br/">Visite o site de estudos do ENEM</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Gráfico CCI (3PL, D=1.0)</h2>
+      <iframe src="{CCI_FILE}"></iframe>
+      <h2>Explicação do Gráfico</h2>
+      <li>(Faça uma explicação resumida sobre o que é o gráfico da Curva Característica do Item no nível que um estudante de ensino médio entenda.)</li>
+      <li>(Analise a imagem presente no arquivo indicado pelo caminho CCI_FILE e faça uma análise da imagem, explicando-a para um aluno de nível médio. Se não conseguir acessar a imagem, pule este item e AVISE!!)</li>
+    </div>
+  </div>
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
