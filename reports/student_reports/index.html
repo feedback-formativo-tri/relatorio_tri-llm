@@ -1,3 +1,419 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0085285bdbd6a2cecf0f841f993aeea74c06ba338eba8cc4d3699b0b19ba2382
-size 15027
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios · Estudantes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg0: #fbf7ef;
+      --bg1: #f4efe5;
+      --ink: #1f2328;
+      --muted: #5f5a52;
+      --line: #e6dfd3;
+      --accent: #1f5e4b;
+      --accent2: #b24b2a;
+      --shadow: 0 10px 30px rgba(25,20,10,.08);
+      --shadow-hover: 0 20px 50px rgba(25,20,10,.16);
+      --radius: 18px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      color: var(--ink);
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 420px at 15% -10%, rgba(31,94,75,.18), transparent 55%),
+        radial-gradient(900px 360px at 85% 0%, rgba(178,75,42,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      padding: 40px 20px 60px;
+    }
+
+    /* ── Back link ── */
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color .2s ease, gap .2s ease;
+      opacity: 0;
+      animation: fadeUp .5s ease forwards;
+    }
+    .back:hover { color: var(--accent); gap: 9px; }
+
+    /* ── Header ── */
+    .header {
+      max-width: 860px;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp .6s .1s ease forwards;
+    }
+
+    .eyebrow {
+      font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), rgba(31,94,75,.2));
+      border-radius: 2px;
+      margin-top: 18px;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 900px) {
+      .grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    }
+
+    /* ── Student card ── */
+    .card {
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 22px 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s cubic-bezier(.22,.9,.3,1), box-shadow .3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), rgba(31,94,75,.25));
+      border-radius: var(--radius) var(--radius) 0 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s cubic-bezier(.22,.9,.3,1);
+    }
+    .card:hover .card-bar { transform: scaleX(1); }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(31,94,75,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .card-num {
+      font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .card-name {
+      font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(31,94,75,.08);
+      border-radius: 8px;
+      padding: 7px 12px;
+      margin-top: auto;
+      width: fit-content;
+      transition: background .2s ease, gap .2s ease;
+    }
+    .card:hover .card-cta {
+      background: rgba(31,94,75,.15);
+      gap: 8px;
+    }
+
+    /* staggered animation */
+    .card:nth-child(1) { animation: fadeUp .55s .2s  ease forwards; }
+    .card:nth-child(2) { animation: fadeUp .55s .28s ease forwards; }
+    .card:nth-child(3) { animation: fadeUp .55s .34s ease forwards; }
+    .card:nth-child(4) { animation: fadeUp .55s .40s ease forwards; }
+    .card:nth-child(5) { animation: fadeUp .55s .46s ease forwards; }
+    .card:nth-child(6) { animation: fadeUp .55s .52s ease forwards; }
+    .card:nth-child(7) { animation: fadeUp .55s .58s ease forwards; }
+    .card:nth-child(8) { animation: fadeUp .55s .64s ease forwards; }
+
+    /* ── Footer ── */
+    .footer {
+      max-width: 860px;
+      margin: 44px auto 0;
+      font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp .5s .75s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="max-width:860px; margin:0 auto;">
+    <a href="../../index.html" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Voltar à página inicial
+    </a>
+  </div>
+
+  <div class="header">
+    <p class="eyebrow">Acesso individual · Análise TRI</p>
+    <h1>Relatórios para<br>Estudantes</h1>
+    <p class="subtitle">Selecione o seu relatório para visualizar a análise personalizada de desempenho com base na Teoria de Resposta ao Item.</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="grid">
+
+    <a href="relatorio_210054817981_30_PA_LC.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 01</p>
+        <p class="card-name">relatorio_estudante_1.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="relatorio_210054874307_24_PA_MT.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 02</p>
+        <p class="card-name">relatorio_estudante_2.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="relatorio_210055346636_9_PR_MT.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 03</p>
+        <p class="card-name">relatorio_estudante_3.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="relatorio_210055440339_1_PR_CN.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 04</p>
+        <p class="card-name">relatorio_estudante_4.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="relatorio_210055445380_26_PR_CH.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 05</p>
+        <p class="card-name">relatorio_estudante_5.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="relatorio_210055445380_26_PR_CH.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 06</p>
+        <p class="card-name">relatorio_estudante_6.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="relatorio_210057235908_16_PA_CH.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 07</p>
+        <p class="card-name">relatorio_estudante_7.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="relatorio_210057651124_19_PA_CN.html" class="card">
+      <div class="card-bar"></div>
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div>
+        <p class="card-num">Estudante 08</p>
+        <p class="card-name">relatorio_estudante_8.html</p>
+      </div>
+      <span class="card-cta">
+        Ver relatório
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+  </div>
+
+  <footer class="footer">
+    Análise TRI pós-prova · ENEM &nbsp;·&nbsp; Teoria de Resposta ao Item (modelo 3PL)
+  </footer>
+
+</body>
+</html>

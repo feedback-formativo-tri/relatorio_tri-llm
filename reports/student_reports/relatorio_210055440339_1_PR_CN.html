@@ -1,3 +1,176 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:660da4d482f4d70be316a29e09776f5f1537dada5bb910fa2459c13a2ffee6d4
-size 9790
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <title>Relatório de Análise TRI pós-prova do ENEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg0:#fbf7ef;
+      --bg1:#f4efe5;
+      --card:#ffffff;
+      --ink:#1f2328;
+      --muted:#5f5a52;
+      --line:#e6dfd3;
+      --accent:#1f5e4b;
+      --accent2:#b24b2a;
+      --shadow:0 10px 30px rgba(25,20,10,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:'Source Serif 4', Georgia, serif;
+      color:var(--ink);
+      background: radial-gradient(1200px 420px at 15% -10%, rgba(31,94,75,.18), transparent 55%),
+                  radial-gradient(900px 360px at 85% 0%, rgba(178,75,42,.16), transparent 55%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      padding:20px 14px 34px;
+    }
+    h1,h2{font-family:'IBM Plex Sans', ui-sans-serif, system-ui; letter-spacing:-0.01em;}
+    h1{font-size:28px; margin:0 0 10px;}
+    h2{font-size:18px; margin:18px 0 8px;}
+    a{color:var(--accent); text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .top{
+      max-width:1500px;
+      margin:0 auto 14px;
+      background:rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 10px;
+    }
+    .muted{color:var(--muted);}
+    .container{
+      max-width:1500px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    @media(min-width: 980px){
+      .container{grid-template-columns: 1fr 1.25fr; align-items:start;}
+    }
+    .card{
+      background:rgba(255,255,255,.82);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px;
+    }
+    ul{margin:8px 0 0 18px;}
+    li{margin:6px 0;}
+    iframe{
+      width:100%;
+      height:820px;
+      border:1px solid rgba(230,223,211,.9);
+      border-radius:14px;
+      background:#fff;
+    }
+  </style>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script><style id="plotly.js-style-global"></style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1297.0" data-gr-ext-installed="">
+  <!-- Botão de retorno -->
+<div style="max-width:1500px; margin:0 auto 0; padding: 14px 14px 0;">
+  <a href="../student_reports/index.html" style="
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Sans', ui-sans-serif, system-ui;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5f5a52;
+    text-decoration: none;
+    background: rgba(255,255,255,.82);
+    border: 1px solid #e6dfd3;
+    border-radius: 10px;
+    padding: 8px 14px;
+    box-shadow: 0 4px 12px rgba(25,20,10,.07);
+    transition: color .2s ease, gap .2s ease;
+  " onmouseover="this.style.color='#1f5e4b'; this.style.gap='9px';"
+     onmouseout="this.style.color='#5f5a52'; this.style.gap='6px';">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Voltar aos relatórios
+  </a>
+</div>
+<!-- Fim do botão de retorno -->
+  <div class="top">
+    <h1>Relatório de Análise TRI pós-prova do ENEM</h1>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <h2><b>Estudante: 210055440339</b></h2>
+      <ul>
+        <li>Habilidade do examinando (ENEM): 680.62 (200 a 1.000) | theta: 0.8062</li>
+        <li>Probabilidade do modelo no item: P(theta)=55.93%</li>
+        <li>O aluno errou a questão</li>
+      </ul>
+
+      <h2><b>Item avaliado: 91 (Q1)</b></h2>
+      <ul>
+        <li>Área de Conhecimento: Ciências da Natureza e suas Tecnologias</li>
+        <li>Gabarito: E</li>
+        <li>Parâmetros TRI (3PL): a=0.83 | b=0.72 (b_ENEM=672.38) | c=6.75%</li>
+        <li>Classificação do item: Dificil</li>
+        <li>Competência exigida: Entender métodos e procedimentos próprios das ciências naturais e aplicá-los em diferentes contextos.</li>
+        <li>Habilidade exigida: Relacionar propriedades físicas, químicas ou biológicas de produtos, sistemas ou procedimentos tecnológicos às finalidades a que se destinam.</li>
+      </ul>
+
+      <h2>Análise Detalhada e Feedback</h2>
+      <ul>
+        <li>O gap é 8.24, calculado pela diferença entre a habilidade estimada normalizada (680.62) e a dificuldade normalizada (672.38).</li>
+        <li>O gap positivo, embora pequeno, indica que a habilidade do aluno está ligeiramente acima da dificuldade da questão, sugerindo domínio接近 do conteúdo.</li>
+        <li>A probabilidade de acerto (55.93%) é consideravelmente maior que a probabilidade de acerto por acaso (6.75%), indicando que o aluno respondeu com conhecimento e não por sorte.</li>
+        <li>O aluno errou uma questão com habilidade ligeiramente acima da dificuldade, sugerindo que o erro pode ter sido causado por distração, má interpretação do enunciado ou falta de atenção aos detalhes.</li>
+      </ul>
+      <p>O aluno errou a questão. Sua habilidade estimada (680.62) está próxima da dificuldade da questão (672.38), com gap de 8.24. Recomenda-se revisar os fundamentos da competência de entender métodos e procedimentos próprios das ciências naturais e aplicá-los em diferentes contextos e praticar exercícios relacionados à habilidade de relacionar propriedades físicas, químicas ou biológicas de produtos, sistemas ou procedimentos tecnológicos às finalidades a que se destinam.</p>
+      <h2>Competências e Habilidades</h2>
+      <ul>
+        <li>Competência exigida: Entender métodos e procedimentos próprios das ciências naturais e aplicá-los em diferentes contextos.</li>
+        <li>Habilidade exigida: Relacionar propriedades físicas, químicas ou biológicas de produtos, sistemas ou procedimentos tecnológicos às finalidades a que se destinam.</li>
+        <li>Assuntos englobados: Método científico, propriedades físicas, químicas e biológicas, relações entre propriedades de materiais e suas aplicações tecnológicas, experimentação científica.</li>
+      </ul>
+      <h2>Estratégias de Estudo Direcionadas</h2>
+      <ul>
+        <li>Tópicos prioritários: Etapas do método científico, propriedades específicas da matéria, aplicações tecnológicas de materiais,interpretação de fenômenos naturais.</li>
+        <li>Estratégias: Dado o gap positivo pequeno (8.24), recomenda-se revisão periódica e aprofundamento com exercícios de nível moderado a difícil para consolidar o domínio do conteúdo.</li>
+        <li><a href="https://app.mecenem.mec.gov.br/">Visite o site de estudos do ENEM</a></li>
+        <li>Materiais relevantes:
+          <ul>
+            <li><strong>Videoaulas:</strong>
+              <ul>
+                                <li><a href="https://www.youtube.com/watch?v=QJZxSq5P7-g">Método Científico - Aula completa (Prof. Guilherme)</a></li>
+                <li><a href="https://brasilescola.uol.com.br/videos/propriedades-da-materia.htm">Propriedades da Matéria - Brasil Escola</a></li>
+                <li><a href="https://www.youtube.com/watch?v=9S3cx1gqjCg">Nomenclatura Química - Química Simples</a></li>
+              </ul>
+            </li>
+            <li><strong>Páginas da internet explicativas:</strong>
+              <ul>
+                                <li><a href="https://brasilescola.uol.com.br/quimica/propriedades-da-materia.htm">Propriedades da matéria: o que são e classificações - Brasil Escola</a></li>
+                <li><a href="https://descomplica.com.br/blog/quimica/resumo-propriedades-da-materia/">Resumo sobre Propriedades da Matéria - Descomplica</a></li>
+                <li><a href="https://beduka.com/blog/materias/quimica/propriedades-da-materia/">Propriedades da Matéria - Beduka</a></li>
+              </ul>
+            </li>
+            <li><strong>PDFs ou slides:</strong>
+              <ul>
+                                <li><a href="https://educacaopublica.cecierj.edu.br/artigos/21/1/o-metodo-cientifico-e-seus-fundamentos">O Método Científico e seus Fundamentos - Educação Pública</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Gráfico CCI (3PL, D=1.0)</h2>
+      <iframe src="C:\Users\marce\prof_barreto\Analise_TRI\report\report_deepseek\plots\cci_210055440339_PR_CN_1.html"></iframe>
+      <h2>Explicação do Gráfico</h2>
+            <li>O gráfico da Curva Característica do Item (CCI) mostra como a probabilidade de acerto varia conforme a habilidade do estudante. No modelo 3PL, três parâmetros são considerados: a discriminatividade (a), a dificuldade (b) e a probabilidade de acerto por acaso (c).</li>
+            <li>O gráfico apresenta uma curva com inclinação moderada (a=0.83), indicando que o item tem capacidade moderada de diferenciar estudantes com habilidades próximas ao seu ponto de dificuldade. A dificuldade é baixa (b=0.72, correspondente a 672.38 na escala ENEM), deslocando a curva ligeiramente para a esquerda, indicando que estudantes com habilidade mediana conseguem boa probabilidade de acerto. O parâmetro de acerto por acaso (c=6.75%) está bem abaixo da probabilidade de acerto do aluno (55.93%), confirmando que a resposta foi baseada em conhecimento.</li>
+    </div>
+  </div>
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
