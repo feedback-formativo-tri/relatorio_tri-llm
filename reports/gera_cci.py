@@ -253,7 +253,9 @@ def gera_cci_aluno(matricula, questao, area_conhecimento, estado):
   with open(cci_file, "w", encoding="utf-8") as f:
       f.write(cci_html)
   
-  return os.path.abspath(cci_file)
+  cci_file = "../" + cci_file
+  
+  return cci_file
 
 def gera_cci_aluno_no_llm(matricula, questao, area_conhecimento, estado):
   cci_file = f"../plots/cci_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
