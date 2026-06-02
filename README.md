@@ -22,10 +22,15 @@ Suas tarefas:
 4.2.1. Videoaulas;
 4.2.2. Páginas da internet explicativas (exclui-se páginas do gov.br);
 4.2.3. PDFs ou slides referentes ao assunto (não obrigatório).
+4.3. Antes de retornar qualquer link, acesse-o e verifique se:
+4.3.1. A página existe e carrega corretamente (não retorna 404 ou erro)
+4.3.2. O vídeo/conteúdo está disponível (não está privado, removido ou indisponível)
+4.3.3 O conteúdo corresponde ao tema solicitado
+4.4. Escreva apenas links confirmados como válidos.
 5. Com essas alterações, você deve gerar um arquivo html independente nomeado da seguinte forma: "relatorio_{MATRICULA}_{ITEM_PROVA}_{ESTADO}_{AREA}.html":
 5.1. Este arquivo html deve ser relacionado somente aos dados presentes no arquivo correspondente na pasta "input_info";
 5.2. Este arquivo html deve seguir a estrutura do html presente no "prompt_aluno_opencode.txt";
-6. O arquivo html gerado deve ser salvo na pasta "student_reports". Se ela não existir, você deve criá-la;
+6. O arquivo html gerado deve ser salvo na pasta "relatorios_finais". Se ela não existir, você deve criá-la;
 7. O processo deve ser repetido desde o passo '1.' para todo arquivo da pasta "input_info" e tire dúvidas, se tiver.
 ```
 
